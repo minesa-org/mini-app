@@ -1,0 +1,29 @@
+{
+	"name": "@minesa-org/assistant",
+	"version": "1.0.0",
+	"description": "Mini-Interaction <3",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc",
+		"register": "tsx scripts/register.ts",
+		"start": "npm run register && node dist/index.js",
+		"production": "vercel --prod"
+	},
+	"keywords": [
+		"discord",
+		"app",
+		"template",
+		"http-interaction"
+	],
+	"author": "Neodevils",
+	"license": "",
+	"type": "module",
+	"dependencies": {
+		"@minesa-org/mini-interaction": "^0.0.4"
+	},
+	"devDependencies": {
+		"@types/node": "^22.8.1",
+		"tsx": "^4.20.6",
+		"typescript": "^5.9.3"
+	}
+}
