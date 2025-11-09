@@ -16,6 +16,13 @@ const userSchema = new MiniDataBuilder()
 /**
  * Database configuration based on environment variables.
  */
+console.log("🔍 Database environment variables:", {
+	DATABASE_TYPE: process.env.DATABASE_TYPE,
+	MONGODB_URI: process.env.MONGODB_URI ? "***SET***" : "NOT SET",
+	MONGO_DB_NAME: process.env.MONGO_DB_NAME,
+	MONGO_COLLECTION_NAME: process.env.MONGO_COLLECTION_NAME,
+});
+
 const dbConfig = new MiniDatabaseBuilder()
 	.setType((process.env.DATABASE_TYPE as "json" | "mongodb") || "json")
 	.setDataPath(process.env.DATABASE_PATH || "./data")
