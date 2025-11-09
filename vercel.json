@@ -1,10 +1,23 @@
 {
 	"buildCommand": "npm run build",
-	"outputDirectory": "dist",
 	"functions": {
 		"api/interactions.ts": {
 			"maxDuration": 10,
 			"includeFiles": "dist/**"
+		},
+		"api/discord-oauth-callback.ts": {
+			"maxDuration": 10,
+			"includeFiles": "dist/**"
+		},
+		"api/get-oauth-url.ts": {
+			"maxDuration": 10,
+			"includeFiles": "dist/**"
 		}
-	}
+	},
+	"rewrites": [
+		{
+			"source": "/",
+			"destination": "/public/index.html"
+		}
+	]
 }
