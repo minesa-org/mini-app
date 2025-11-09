@@ -2,10 +2,14 @@
 	"rewrites": [
 		{
 			"source": "/",
-			"destination": "/index.html"
+			"destination": "/api/index"
 		}
 	],
 	"functions": {
+		"api/index.ts": {
+			"maxDuration": 10,
+			"includeFiles": "index.html"
+		},
 		"api/interactions.ts": {
 			"maxDuration": 10
 		},
