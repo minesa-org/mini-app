@@ -25,6 +25,7 @@
 	},
 	"dependencies": {
 		"@minesa-org/mini-interaction": "^0.1.3",
+		"@vercel/node": "^5.5.5",
 		"mongodb": "^7.0.0"
 	}
 }
