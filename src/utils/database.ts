@@ -19,9 +19,7 @@ const userSchema = new MiniDataBuilder()
 const dbConfig = new MiniDatabaseBuilder()
 	.setType((process.env.DATABASE_TYPE as "json" | "mongodb") || "json")
 	.setDataPath(process.env.DATABASE_PATH || "./data")
-	.setMongoUri(
-		process.env.DATABASE_MONGO_URI || process.env.MONGODB_URI || "",
-	)
+	.setMongoUri(process.env.MONGODB_URI || "")
 	.setDbName(process.env.MONGO_DB_NAME || "assistant")
 	.setCollectionName(process.env.MONGO_COLLECTION_NAME || "users")
 	.build();
