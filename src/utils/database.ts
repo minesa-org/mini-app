@@ -1,40 +1,13 @@
-import {
-	MiniDatabase,
-	MiniDatabaseBuilder,
-	MiniDataBuilder,
-} from "@minesa-org/mini-interaction";
-
-/**
- * User data schema for the database.
- * Stores user metadata for linked roles.
- */
-const userSchema = new MiniDataBuilder()
-	.addField("userId", "string", { required: true })
-	.addField("is_assistant", "boolean", { default: false })
-	.addField("lastUpdated", "number", { default: Date.now() });
-
-/**
- * Database configuration based on environment variables.
- */
-console.log("🔍 Database environment variables:", {
-	DATABASE_TYPE: process.env.DATABASE_TYPE,
-	MONGODB_URI: process.env.MONGODB_URI ? "***SET***" : "NOT SET",
-	MONGO_DB_NAME: process.env.MONGO_DB_NAME,
-	MONGO_COLLECTION_NAME: process.env.MONGO_COLLECTION_NAME,
-});
-
-const dbConfig = new MiniDatabaseBuilder()
-	.setType((process.env.DATABASE_TYPE as "json" | "mongodb") || "json")
-	.setDataPath(process.env.DATABASE_PATH || "./data")
-	.setMongoUri(process.env.MONGODB_URI || "")
-	.setDbName(process.env.MONGO_DB_NAME || "assistant")
-	.setCollectionName(process.env.MONGO_COLLECTION_NAME || "users")
-	.build();
+import { MiniDatabase } from "@minesa-org/mini-interaction";
 
 /**
  * Shared database instance for the application.
+ * Automatically configured from environment variables:
+ * - MONGODB_URI: MongoDB connection string
+ * - MONGO_DB_NAME: Database name (default: "assistant")
+ * - MONGO_COLLECTION_NAME: Collection name (default: "users")
  */
-export const db = new MiniDatabase(dbConfig, userSchema);
+export const db = MiniDatabase.fromEnv();
 
 /**
  * Gets user data from the database.

@@ -7,7 +7,7 @@ import {
  * Initialize the MiniInteraction client.
  * This will automatically load commands and components from the dist directory.
  */
-const mini = new MiniInteraction({
+export const mini = new MiniInteraction({
 	applicationId: process.env.DISCORD_APPLICATION_ID!,
 	publicKey: process.env.DISCORD_APP_PUBLIC_KEY!,
 });

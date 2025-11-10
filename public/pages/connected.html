@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Successfully Connected</title>
+	<style>
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			margin: 0;
+			padding: 20px;
+		}
+		.container {
+			background: white;
+			border-radius: 15px;
+			box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+			max-width: 500px;
+			width: 100%;
+			padding: 40px;
+			text-align: center;
+		}
+		.success-icon {
+			font-size: 64px;
+			margin-bottom: 20px;
+		}
+		h1 {
+			color: #2e7d32;
+			margin: 0 0 10px 0;
+			font-size: 28px;
+		}
+		.user-info {
+			background: #f5f5f5;
+			padding: 20px;
+			border-radius: 10px;
+			margin: 20px 0;
+		}
+		.user-tag {
+			font-size: 20px;
+			font-weight: bold;
+			color: #5865f2;
+			margin: 10px 0;
+		}
+		.info {
+			color: #666;
+			line-height: 1.6;
+			margin: 20px 0;
+		}
+		.close-btn {
+			background: #5865f2;
+			color: white;
+			border: none;
+			padding: 12px 30px;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			margin-top: 20px;
+		}
+		.close-btn:hover {
+			background: #4752c4;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="success-icon">✅</div>
+		<h1>Successfully Connected!</h1>
+		<div class="user-info">
+			<p style="margin: 0; color: #888; font-size: 14px;">Connected as</p>
+			<div class="user-tag">{{user_tag}}</div>
+			<p style="margin: 10px 0 0 0; color: #888; font-size: 12px;">User ID: {{user_id}}</p>
+		</div>
+		<div class="info">
+			<p>Your Discord account has been successfully linked!</p>
+			<p>Your linked role metadata has been updated and you can now access role-gated features.</p>
+		</div>
+		<button class="close-btn" onclick="window.close()">Close Window</button>
+	</div>
+</body>
+</html>
+
