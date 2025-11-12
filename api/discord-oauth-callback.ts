@@ -14,7 +14,6 @@ export default mini.discordOAuthCallback({
 		serverError: failedPage,
 	},
 	async onAuthorize({ user, tokens }: { user: any; tokens: any }) {
-		// Store tokens in database
 		await database.set(user.id, {
 			accessToken: tokens.access_token,
 			refreshToken: tokens.refresh_token,
@@ -22,7 +21,6 @@ export default mini.discordOAuthCallback({
 			scope: tokens.scope,
 		});
 
-		// Update Discord metadata
 		await updateDiscordMetadata(user.id, tokens.access_token);
 	},
 });

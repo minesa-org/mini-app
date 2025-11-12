@@ -5,8 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"mi-latest": "npm i @minesa-org/mini-interaction@latest",
-		"build": "tsc && node scripts/postbuild.mjs",
-		"register": "tsx scripts/register.ts",
+		"build": "tsx scripts/register.ts",
 		"production": "vercel --prod"
 	},
 	"keywords": [
@@ -24,7 +23,7 @@
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"@minesa-org/mini-interaction": "^0.1.4",
+		"@minesa-org/mini-interaction": "^0.1.5",
 		"@vercel/node": "^5.5.5",
 		"mongodb": "^7.0.0"
 	}

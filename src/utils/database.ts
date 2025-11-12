@@ -62,8 +62,7 @@ export async function updateDiscordMetadata(
 	const isAssistant = userData?.is_assistant || false;
 
 	const metadata = {
-		platform_name: "Assistant App",
-		platform_username: userId,
+		platform_name: "Mini-Interaction",
 		metadata: {
 			is_assistant: isAssistant ? 1 : 0,
 		},
