@@ -13,7 +13,7 @@
 		},
 		"api/interactions.ts": {
 			"maxDuration": 10,
-			"includeFiles": "dist/**"
+			"includeFiles": "{src/commands/**,src/components/**,src/utils/**}"
 		},
 		"api/discord-oauth-callback.ts": {
 			"maxDuration": 10,
