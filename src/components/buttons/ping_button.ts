@@ -1,5 +1,5 @@
 import {
-	ButtonInteraction,
+	type ButtonInteraction,
 	type MiniInteractionComponent,
 } from "@minesa-org/mini-interaction";
 
