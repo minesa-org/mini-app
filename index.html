@@ -75,11 +75,15 @@
 
 		<script>
 			// OAuth URL will be injected here by the server
-			const oauthUrl = "{{OAUTH_URL}}";
+			const oauthUrl = "{{OAUTH_URL_RAW}}";
+			const isPlaceholder =
+				typeof oauthUrl !== "string" ||
+				!oauthUrl.length ||
+				oauthUrl.includes("{{");
 
-			// Redirect immediately
-			if (oauthUrl && oauthUrl !== "{{OAUTH_URL}}") {
-				window.location.href = oauthUrl;
+			// Redirect immediately if we have a real URL, otherwise show an error
+			if (!isPlaceholder) {
+				window.location.replace(oauthUrl);
 			} else {
 				document.querySelector("h1").textContent = "ERROR";
 			}

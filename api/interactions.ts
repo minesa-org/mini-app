@@ -17,4 +17,4 @@ await mini.registerMetadata(process.env.DISCORD_BOT_TOKEN!, [
 	},
 ]);
 
-export default mini.createVercelHandler();
+export default mini.createNodeHandler();

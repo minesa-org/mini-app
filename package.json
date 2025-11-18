@@ -23,8 +23,7 @@
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"@minesa-org/mini-interaction": "^0.1.5",
-		"@vercel/node": "^5.5.5",
+		"@minesa-org/mini-interaction": "^0.1.9",
 		"mongodb": "^7.0.0"
 	}
 }
