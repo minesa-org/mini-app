@@ -1,6 +1,6 @@
 import {
 	type MiniInteractionComponent,
-	StringSelectInteraction,
+	type StringSelectInteraction,
 } from "@minesa-org/mini-interaction";
 
 const selectmenu_menu: MiniInteractionComponent = {
