@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Connected to Assistant!</title>
+		<title>Linked Roles Redirect</title>
 	</head>
 	<body
 		style="
@@ -25,6 +25,7 @@
 		"
 	>
 		<div style="display: flex; align-items: center">
+			<!-- Discord Logo -->
 			<svg
 				fill="none"
 				height="88"
@@ -40,6 +41,8 @@
 					fill-rule="evenodd"
 				/>
 			</svg>
+
+			<!-- Plus Icon -->
 			<svg
 				height="28"
 				viewBox="0 0 28 28"
@@ -54,32 +57,60 @@
 					transform="translate(-126 -30)"
 				/>
 			</svg>
-			<img
-				src=""
-				style="width: 88px; height: 88px; border-radius: 100%"
-				draggable="false"
-				alt=""
-			/>
+
+			<!-- Logo Placeholder -->
+			<div
+				style="
+					width: 88px;
+					height: 88px;
+					border-radius: 100%;
+					border: 3px solid #949494;
+					border-style: dashed;
+					background: #1d1d1d;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				"
+			></div>
 		</div>
+
 		<div
-			style="
-				margin-top: 16px;
-				color: hsl(0 calc(1 * 0%) 100% / 1);
-				text-align: center;
-			"
+			style="margin-top: 16px; color: hsl(0 0% 100%); text-align: center"
 		>
-			<strong>Assistant</strong> has connected to your
-			<strong>Discord</strong>
+			Redirecting to <strong>Discord</strong> to verify your linked roles
 		</div>
+
 		<div
 			style="
 				margin-top: 16px;
 				font-size: 16px;
-				color: hsl(214 calc(1 * 8.1%) 61.2% / 1);
+				color: hsl(214 8.1% 61.2%);
 				text-align: center;
 			"
 		>
-			You can close this window and return to Discord.
+			This only takes a moment.
 		</div>
+
+		<script>
+			// Added logging to help identify why a redirect might fail
+			const oauthUrl = "{{OAUTH_URL_RAW}}";
+			const isPlaceholder =
+				typeof oauthUrl !== "string" ||
+				!oauthUrl.length ||
+				oauthUrl.includes("{{");
+
+			console.log("[LinkedRoles] OAuth URL available:", !isPlaceholder);
+
+			if (!isPlaceholder) {
+				console.log("[LinkedRoles] Redirecting to:", oauthUrl);
+				window.location.replace(oauthUrl);
+			} else {
+				console.error(
+					"[LinkedRoles] OAuth URL is a placeholder, redirect aborted."
+				);
+				document.querySelector("div:nth-of-type(2)").innerHTML =
+					"<strong>ERROR: Redirect failed</strong>";
+			}
+		</script>
 	</body>
 </html>

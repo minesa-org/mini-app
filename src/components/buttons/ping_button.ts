@@ -1,17 +1,39 @@
 import {
+	type ComponentCommand,
 	type ButtonInteraction,
-	type MiniInteractionComponent,
+	ModalBuilder,
+	LabelBuilder,
+	StringSelectMenuBuilder,
+	StringSelectMenuOptionBuilder,
 } from "@minesa-org/mini-interaction";
 
-const ping_button: MiniInteractionComponent = {
-	customId: "button:btn:primary",
+const ping_button: ComponentCommand = {
+	customId: "ping_button",
 
 	handler: async (interaction: ButtonInteraction) => {
-		const response = "Button clicked!";
+		const modal = new ModalBuilder()
+			.setCustomId("ping_modal")
+			.addComponents(
+				new LabelBuilder()
+					.setLabel("Select an option")
+					.setDescription("Say hi or hello")
+					.setComponent(
+						new StringSelectMenuBuilder()
+							.setCustomId("ping_menu_modal")
+							.addOptions(
+								new StringSelectMenuOptionBuilder()
+									.setLabel("Hello")
+									.setDescription("This is hello")
+									.setValue("value_hello"),
+								new StringSelectMenuOptionBuilder()
+									.setLabel("Hi")
+									.setDescription("This is hi")
+									.setValue("value_hi")
+							)
+					)
+			);
 
-		return interaction.reply({
-			content: response,
-		});
+		return interaction.showModal(modal);
 	},
 };
 

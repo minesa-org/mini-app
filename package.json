@@ -1,5 +1,5 @@
 {
-	"name": "@minesa-org/assistant",
+	"name": "@minesa-org/mini-app",
 	"version": "1.0.0",
 	"description": "Mini-Interaction <3",
 	"main": "index.js",
@@ -23,7 +23,8 @@
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"@minesa-org/mini-interaction": "^0.1.9",
+		"@minesa-org/mini-interaction": "^0.2.3",
+		"dotenv": "^17.2.3",
 		"mongodb": "^7.0.0"
 	}
 }

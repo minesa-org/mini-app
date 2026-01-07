@@ -1,16 +1,16 @@
 import {
+	type ComponentCommand,
 	type ModalSubmitInteraction,
-	type MiniInteractionComponent,
 } from "@minesa-org/mini-interaction";
 
-const ping_modal: MiniInteractionComponent = {
-	customId: "modal:mdl",
+const ping_modal: ComponentCommand = {
+	customId: "ping_modal",
 
 	handler: async (interaction: ModalSubmitInteraction) => {
-		const firstValue = interaction.getTextInputValue("modal:mdl:first");
+		const optionValue = interaction.getSelectMenuValues("ping_menu_modal");
 
 		return interaction.reply({
-			content: `First value: ${firstValue}`,
+			content: `You selected: ${optionValue}`,
 		});
 	},
 };

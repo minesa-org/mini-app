@@ -8,13 +8,4 @@ export const mini = new MiniInteraction({
 	publicKey: process.env.DISCORD_APP_PUBLIC_KEY!,
 });
 
-await mini.registerMetadata(process.env.DISCORD_BOT_TOKEN!, [
-	{
-		key: "is_assistant",
-		name: "Is Assistant?",
-		description: "Is the user an assistant?",
-		type: RoleConnectionMetadataTypes.BooleanEqual,
-	},
-]);
-
 export default mini.createNodeHandler();

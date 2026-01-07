@@ -1,10 +1,10 @@
 import {
-	type MiniInteractionComponent,
+	type ComponentCommand,
 	type StringSelectInteraction,
 } from "@minesa-org/mini-interaction";
 
-const selectmenu_menu: MiniInteractionComponent = {
-	customId: "menu:role",
+const selectmenu_menu: ComponentCommand = {
+	customId: "ping_menu",
 
 	handler: async (interaction: StringSelectInteraction) => {
 		const value = interaction.getStringValues().join(", ");

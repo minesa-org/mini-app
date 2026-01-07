@@ -2,10 +2,6 @@ import { MiniDatabase } from "@minesa-org/mini-interaction";
 
 /**
  * Shared database instance for the application.
- * Automatically configured from environment variables:
- * - MONGODB_URI: MongoDB connection string
- * - MONGO_DB_NAME: Database name (default: "assistant")
- * - MONGO_COLLECTION_NAME: Collection name (default: "users")
  */
 export const db = MiniDatabase.fromEnv();
 
@@ -17,54 +13,42 @@ export async function getUserData(userId: string) {
 		return await db.get(userId);
 	} catch (error) {
 		console.error("❌ Error getting user data:", error);
-		console.error("Database config:", {
-			type: process.env.DATABASE_TYPE || "json",
-			path: process.env.DATABASE_PATH || "./data",
-		});
 		throw error;
 	}
 }
 
 /**
- * Sets user's is_assistant status in the database.
+ * Sets user's is_miniapp status.
+ * Always true. No gating. Everyone connects.
  */
-export async function setUserAssistantStatus(
-	userId: string,
-	isAssistant: boolean,
-) {
+export async function setUserMiniAppStatus(userId: string) {
 	try {
-		// Always use set() to avoid MongoDB createdAt/updatedAt conflict
-		// The package automatically handles timestamps
 		return await db.set(userId, {
 			userId,
-			is_assistant: isAssistant,
+			is_miniapp: true,
 			lastUpdated: Date.now(),
 		});
 	} catch (error) {
-		console.error("❌ Error setting user assistant status:", error);
-		console.error("Database config:", {
-			type: process.env.DATABASE_TYPE || "json",
-			path: process.env.DATABASE_PATH || "./data",
-		});
+		console.error("❌ Error setting user miniapp status:", error);
 		throw error;
 	}
 }
 
 /**
  * Updates user metadata for Discord linked roles.
- * This function pushes the metadata to Discord's API.
+ * is_miniapp is always true.
  */
 export async function updateDiscordMetadata(
 	userId: string,
-	accessToken: string,
+	accessToken: string
 ) {
-	const userData = await getUserData(userId);
-	const isAssistant = userData?.is_assistant || false;
+	// Optional persistence, safe even if repeated
+	await setUserMiniAppStatus(userId);
 
 	const metadata = {
 		platform_name: "Mini-Interaction",
 		metadata: {
-			is_assistant: isAssistant ? 1 : 0,
+			is_miniapp: 1,
 		},
 	};
 
@@ -77,7 +61,7 @@ export async function updateDiscordMetadata(
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(metadata),
-		},
+		}
 	);
 
 	if (!response.ok) {
