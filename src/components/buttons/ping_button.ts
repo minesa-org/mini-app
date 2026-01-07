@@ -13,6 +13,7 @@ const ping_button: ComponentCommand = {
 	handler: async (interaction: ButtonInteraction) => {
 		const modal = new ModalBuilder()
 			.setCustomId("ping_modal")
+			.setTitle("Mini-Interaction Test")
 			.addComponents(
 				new LabelBuilder()
 					.setLabel("Select an option")

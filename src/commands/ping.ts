@@ -4,13 +4,13 @@ import {
 	ButtonStyle,
 	CommandBuilder,
 	ContainerBuilder,
-	InteractionCommand,
 	InteractionFlags,
 	SeparatorBuilder,
 	SeparatorSpacingSize,
 	StringSelectMenuBuilder,
 	StringSelectMenuOptionBuilder,
 	TextDisplayBuilder,
+	type InteractionCommand,
 	type MessageActionRowComponent,
 	type CommandInteraction,
 } from "@minesa-org/mini-interaction";
@@ -36,16 +36,18 @@ const ping: InteractionCommand = {
 			)
 			.addComponent(
 				new ActionRowBuilder<MessageActionRowComponent>().addComponents(
-					new StringSelectMenuBuilder().addOptions(
-						new StringSelectMenuOptionBuilder()
-							.setLabel("Hello")
-							.setDescription("This is hello")
-							.setValue("value_hello"),
-						new StringSelectMenuOptionBuilder()
-							.setLabel("Hi")
-							.setDescription("This is hi")
-							.setValue("value_hi")
-					)
+					new StringSelectMenuBuilder()
+						.setCustomId("ping_menu")
+						.addOptions(
+							new StringSelectMenuOptionBuilder()
+								.setLabel("Hello")
+								.setDescription("This is hello")
+								.setValue("value_hello"),
+							new StringSelectMenuOptionBuilder()
+								.setLabel("Hi")
+								.setDescription("This is hi")
+								.setValue("value_hi")
+						)
 				)
 			);
 
