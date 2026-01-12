@@ -15,7 +15,7 @@ import {
 	type CommandInteraction,
 } from "@minesa-org/mini-interaction";
 
-const ping: InteractionCommand = {
+const test: InteractionCommand = {
 	data: new CommandBuilder().setName("test").setDescription("test command"),
 
 	handler: (interaction: CommandInteraction) => {
@@ -58,4 +58,4 @@ const ping: InteractionCommand = {
 	},
 };
 
-export default ping;
+export default test;
