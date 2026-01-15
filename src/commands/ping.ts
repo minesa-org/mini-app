@@ -18,7 +18,9 @@ import {
 const test: InteractionCommand = {
 	data: new CommandBuilder().setName("test").setDescription("test command"),
 
-	handler: (interaction: CommandInteraction) => {
+	handler: async (interaction: CommandInteraction) => {
+		await interaction.deferReply();
+
 		const container = new ContainerBuilder()
 			.addComponent(new TextDisplayBuilder().setContent("This is a test"))
 			.addComponent(
@@ -51,7 +53,7 @@ const test: InteractionCommand = {
 				)
 			);
 
-		return interaction.reply({
+		return interaction.editReply({
 			components: [container],
 			flags: InteractionFlags.IsComponentsV2,
 		});

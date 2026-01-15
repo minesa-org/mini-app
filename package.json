@@ -23,7 +23,7 @@
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
-		"@minesa-org/mini-interaction": "^0.2.4",
+		"@minesa-org/mini-interaction": "^0.2.8",
 		"dotenv": "^17.2.3",
 		"mongodb": "^7.0.0"
 	}
