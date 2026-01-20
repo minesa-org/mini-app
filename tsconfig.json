@@ -12,8 +12,16 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"allowSyntheticDefaultImports": true,
-		"types": ["node"]
+		"types": [
+			"node"
+		]
 	},
-	"include": ["src/**/*.ts", "api/**/*.ts"],
-	"exclude": ["dist", "node_modules"]
+	"include": [
+		"src/**/*.ts",
+		"api/**/*.ts"
+	],
+	"exclude": [
+		"dist",
+		"node_modules"
+	]
 }

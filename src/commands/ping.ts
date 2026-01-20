@@ -15,8 +15,8 @@ import {
 	type CommandInteraction,
 } from "@minesa-org/mini-interaction";
 
-const test: InteractionCommand = {
-	data: new CommandBuilder().setName("test").setDescription("test command"),
+const ping: InteractionCommand = {
+	data: new CommandBuilder().setName("ping").setDescription("pong"),
 
 	handler: async (interaction: CommandInteraction) => {
 		await interaction.deferReply();
@@ -60,4 +60,4 @@ const test: InteractionCommand = {
 	},
 };
 
-export default test;
+export default ping;
