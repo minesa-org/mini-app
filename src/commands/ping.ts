@@ -1,61 +1,46 @@
 import {
-	ActionRowBuilder,
-	ButtonBuilder,
-	ButtonStyle,
 	CommandBuilder,
 	ContainerBuilder,
-	InteractionFlags,
-	SeparatorBuilder,
-	SeparatorSpacingSize,
-	StringSelectMenuBuilder,
-	StringSelectMenuOptionBuilder,
+	SectionBuilder,
 	TextDisplayBuilder,
-	type InteractionCommand,
-	type MessageActionRowComponent,
-	type CommandInteraction,
+	ButtonBuilder,
+	ButtonStyle,
+	InteractionFlags
+} from "@minesa-org/mini-interaction";
+import type {
+	InteractionCommand,
+	CommandInteraction,
 } from "@minesa-org/mini-interaction";
 
 const ping: InteractionCommand = {
-	data: new CommandBuilder().setName("ping").setDescription("pong"),
+	data: new CommandBuilder()
+		.setName("ping")
+		.setDescription("pong"),
 
 	handler: async (interaction: CommandInteraction) => {
-		await interaction.deferReply();
+		// ACK initial request (Interaction Callback)
+		// Set IsComponentsV2 flag here so Discord knows what to expect
+		interaction.deferReply({ flags: InteractionFlags.IsComponentsV2 });
 
+		// Build the V2 hierarchy correctly
 		const container = new ContainerBuilder()
-			.addComponent(new TextDisplayBuilder().setContent("This is a test"))
 			.addComponent(
-				new SeparatorBuilder()
-					.setDivider(true)
-					.setSpacing(SeparatorSpacingSize.Large)
-			)
-			.addComponent(
-				new ActionRowBuilder<MessageActionRowComponent>().addComponents(
-					new ButtonBuilder()
-						.setCustomId("ping_button")
-						.setLabel("Pong")
-						.setStyle(ButtonStyle.Primary)
-				)
-			)
-			.addComponent(
-				new ActionRowBuilder<MessageActionRowComponent>().addComponents(
-					new StringSelectMenuBuilder()
-						.setCustomId("ping_menu")
-						.addOptions(
-							new StringSelectMenuOptionBuilder()
-								.setLabel("Hello")
-								.setDescription("This is hello")
-								.setValue("value_hello"),
-							new StringSelectMenuOptionBuilder()
-								.setLabel("Hi")
-								.setDescription("This is hi")
-								.setValue("value_hi")
-						)
-				)
+				new SectionBuilder()
+					.addComponent(
+						new TextDisplayBuilder()
+							.setContent("This is a test message using Components V2.")
+					)
+					.setAccessory(
+						new ButtonBuilder()
+							.setCustomId("ping_button")
+							.setLabel("Pong")
+							.setStyle(ButtonStyle.Primary)
+					)
 			);
 
-		return interaction.editReply({
-			components: [container],
-			flags: InteractionFlags.IsComponentsV2,
+		// Edit the reply via Webhook (PATCH /messages/@original)
+		await interaction.editReply({
+			components: [container]
 		});
 	},
 };
