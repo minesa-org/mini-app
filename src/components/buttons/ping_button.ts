@@ -21,6 +21,10 @@ const ping_button: ComponentCommand = {
 					.setComponent(
 						new StringSelectMenuBuilder()
 							.setCustomId("ping_menu_modal")
+							.setPlaceholder("Select an option")
+							.setMinValues(1)
+							.setMaxValues(2)
+							.setDisabled(false)
 							.addOptions(
 								new StringSelectMenuOptionBuilder()
 									.setLabel("Hello")

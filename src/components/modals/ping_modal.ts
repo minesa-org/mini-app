@@ -7,9 +7,9 @@ const ping_modal: ComponentCommand = {
 	customId: "ping_modal",
 
 	handler: async (interaction: ModalSubmitInteraction) => {
-		const optionValue = interaction.getSelectMenuValues("ping_menu_modal");
+		const optionValue = interaction.getSelectMenuValues("ping_menu_modal")?.join(", ");
 
-		return interaction.reply({
+		await interaction.reply({
 			content: `You selected: ${optionValue}`,
 		});
 	},
